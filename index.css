@@ -1,0 +1,92 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --main-color: #f08923;
+    --second-color: #7a7a7a;
+    --background-color: #ffffff;
+    --text-color: #ffffff;
+    --text-color-2: #54595F;
+    --text-color-3: black;
+}
+body {
+    background-color: var(--background-color);
+    font-family: 'Helvetica', sans-serif;
+}
+html, body {
+    overflow: hidden;
+}
+.card {
+    height: 70vh;
+    background: transparent;
+    display: flex;
+}
+.card p {
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .5s;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: brightness(80%);
+}
+.img-1 {
+    background-image: url(https://www.sia-arch.eu/wp-content/uploads/2020/10/dudelange_001.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.img-2 {
+    background-image: url(https://www.sia-arch.eu/wp-content/uploads/2020/10/thedomes_007.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.img-3 {
+    background-image: url(https://www.sia-arch.eu/wp-content/uploads/2020/10/bastogne_warmuseum_001.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.img-4 {
+    background-image: url(https://www.sia-arch.eu/wp-content/uploads/2020/10/merl_02.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.img-5 {
+    background-image: url(https://www.sia-arch.eu/wp-content/uploads/2020/10/tabledemaxime_001.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.img-6 {
+    background-image: url(https://www.sia-arch.eu/wp-content/uploads/2022/04/2-scaled.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.img-7 {
+    background-image: url(https://www.sia-arch.eu/wp-content/uploads/2022/05/Jambes-0097-Au-Fil-de-lEau-3D-005-scaled.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.card p:hover {
+    flex: 3;
+    filter: brightness(60%);
+}
+.card p span {
+    min-width: 14em;
+    padding: .5em;
+    text-align: center;
+    color: var(--text-color);
+    opacity: 0;
+    letter-spacing: .1em;
+}
+.card p:hover span {
+    transform: translateY(100%);
+    transition: all .5s ease-in-out;
+    opacity: 1;
+}
+h1 {
+    margin: 1rem auto;
+    text-align: center;
+}
+

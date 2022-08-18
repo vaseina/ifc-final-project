@@ -2,7 +2,7 @@
   "name": "tooling-final-project-my",
   "version": "1.0.0",
   "description": "",
-  "main": "main-page.js",
+  "main": "index.js",
   "scripts": {
     "build": "npx rollup -c",
     "watch": "npx rollup -c -w"
