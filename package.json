@@ -1,0 +1,29 @@
+{
+  "name": "tooling-final-project-my",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main-page.js",
+  "scripts": {
+    "build": "npx rollup -c",
+    "watch": "npx rollup -c -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaseina/tooling-final-project-my.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vaseina/tooling-final-project-my/issues"
+  },
+  "homepage": "https://github.com/vaseina/tooling-final-project-my#readme",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup": "^2.78.0"
+  },
+  "dependencies": {
+    "three": "^0.135.0",
+    "web-ifc-viewer": "^1.0.209"
+  }
+}
