@@ -21,6 +21,11 @@ h2 {
     text-align: center;
     color: var(--second-color);
 }
+#viewer-container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
 .toolbar {
     display: flex;
     justify-content: center;
