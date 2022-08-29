@@ -16,6 +16,39 @@ body {
 html, body {
     overflow: hidden;
 }
+header {
+    color: var(--background-color);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+}
+.menu-container {
+    display: flex;
+    align-items: center;
+}
+.menu-container:last-child {
+    margin-left: auto;
+}
+h3 {
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--text-color-3);
+    margin: 1rem;
+}
+h3:hover {
+    text-decoration: underline;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    text-underline-offset: .7rem;
+}
+h1 {
+    margin: 0rem 0rem 1rem 0rem ;
+    text-align: center;
+}
+.logo {
+    height: 2rem;
+    margin: 0 1rem;
+}
 .card {
     height: 70vh;
     background: transparent;
@@ -85,8 +118,12 @@ html, body {
     transition: all .5s ease-in-out;
     opacity: 1;
 }
-h1 {
-    margin: 1rem auto;
-    text-align: center;
+@media (max-width: 700px) {
+    h3 {
+        display: none;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
 }
 
