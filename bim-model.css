@@ -1,31 +1,39 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    --main-color: #f08923;
-    --second-color: #7a7a7a;
-    --background-color: #ffffff;
-    --text-color: #ffffff;
-    --text-color-2: #54595F;
-    --text-color-3: black;
+    --main-orange-color: #f08923;
+    --heavy-grey: #7a7a7a;
+    --light-grey: #cdcdcd;
+    --background-white: #ffffff;
+    --transparent-white: rgba(255, 255, 255, 0.7);
+    --text-color-white: #ffffff;
+    --text-color-grey: #54595F;
+    --text-color-black: black;
+
+    --blur-filter: blur(8px);
 }
+
 body {
-    background-color: var(--background-color);
+    background-color: var(--background-white);
     font-family: 'Helvetica', sans-serif;
-}
-html, body {
     overflow: hidden;
 }
+
 h2 {
     margin: 1rem auto;
     text-align: center;
-    color: var(--second-color);
+    color: var(--heavy-grey);
 }
+
 #viewer-container {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
 }
+
 .toolbar {
     display: flex;
     justify-content: center;
@@ -33,46 +41,181 @@ h2 {
     width: 100%;
     bottom: 1rem;
 }
+
 .container {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     flex-wrap: wrap
 }
-.button {
-    background-color: var(--background-color);
-    text-decoration: none;
-    border: 1px solid var(--second-color);
-    color: var(--text-color-2);
-    margin: 0.5rem;
-    padding: 0.5rem 2rem 0.5rem 2rem;
-    text-align: center;
-    height: 3rem;
+
+/* For floorplan and export buttons */
+.button-container {
+    z-index: 2;
+    position: relative;
+    left: .5rem;
+    top: .5rem;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+}
+button {
+    border: 1px solid var(--light-grey);
+    background: var(--transparent-white);
+    backdrop-filter: var(--blur-filter);
+    border-radius: 25px;
+    margin: 0.2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    width: 8rem;
+    transition: width 0.2s ease-in-out;
+}
+button:hover {
+    background: var(--main-orange-color);
+    width: 10rem;
+}
+
+/* From uiverse.io by @mrhyddenn */
+.icon-button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--light-grey);
+    background: var(--transparent-white);
+    backdrop-filter: var(--blur-filter);
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    transition: width 0.2s ease-in-out;
+    font-size: 0.01rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
-    transition: all 0.1s ease-in-out;
-}
-.button:hover {
-    background-color: var(--main-color);
-    border-radius: 1px;
-    transform: translateY(5px);
-    color: var(--background-color);
-    cursor: pointer;
-    border: 1px solid var(--background-color);
+    margin: .3rem;
 }
 
-@media (max-width: 500px) {
+.icon-button:hover {
+    width: 120px;
+    cursor: pointer;
+    background: var(--main-orange-color);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.active {
+    width: 120px;
+    cursor: pointer;
+    background: var(--main-orange-color);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.icon-button::after {
+    right: 14px;
+    overflow: hidden;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.icon-button::before {
+    left: 14px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+svg {
+    fill: var(--heavy-grey);
+    width: 1.8rem;
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+}
+
+.icon-button:hover svg {
+    opacity: 0;
+    display: flex;
+    transform: translateY(5px);
+}
+
+.active svg {
+    fill: var(--background-white);
+}
+
+.text-button {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: absolute;
+    color: var(--text-color-grey);
+}
+
+.icon-button:hover .text-button {
+    opacity: 1;
+    color: var(--text-color-white);
+}
+
+/* For dimentions */
+.ifcjs-dimension-preview {
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--main-orange-color);
+    border-radius: 1rem;
+    opacity: 0.5;
+}
+
+.ifcjs-dimension-label {
+    background-color: var(--text-color-grey);
+    color: var(--background-white);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.all-menus {
+    position: absolute;
+    left: .5rem;
+    top: .5rem;
+}
+
+.checkboxes {
+    position: relative;
+    left: .5rem;
+    top: .5rem;
+    opacity: 0;
+  }
+/* For properties menu */
+.ifc-property-menu {
+    position: relative;
+    border: 1px solid gray;
+    background-color: white;
+    opacity: 0;
+    font-weight: 700;
+}
+.ifc-property-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0.5rem;
+    border-bottom: solid 1px gray;
+    font-weight: 500;
+}
+.ifc-property-value {
+    width: 100%;
+    text-align: right;
+    font-weight: 500;
+}
+.visible {
+    opacity: 1;
+}
+
+/* @media (max-width: 500px) {
     h1 {
         font-size: 0.8rem;
         width: 50%;
     }
+
     h2 {
         font-size: 1rem;
     }
-    .button {
+
+    button {
         font-size: 0.7rem;
         height: 2rem;
     }
-}
+} */

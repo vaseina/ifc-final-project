@@ -1,3 +1,41 @@
+const projects = [
+    {
+        name: "1",
+        id: "1",
+        url: "./ifc/01.ifc"
+    },
+    {
+        name: "2",
+        id: "2",
+        url: "./ifc/02.ifc"
+    },
+    {
+        name: "3",
+        id: "3",
+        url: "./ifc/03.ifc"
+    },
+    {
+        name: "4",
+        id: "4",
+        url: "./ifc/04.ifc"
+    },
+    {
+        name: "5",
+        id: "5",
+        url: "./ifc/05.ifc"
+    },
+    {
+        name: "6",
+        id: "1",
+        url: "./ifc/01.ifc"
+    },
+    {
+        name: "7",
+        id: "1",
+        url: "./ifc/01.ifc"
+    },
+];
+
 /**
  * @license
  * Copyright 2010-2021 Three.js Authors
@@ -28822,7 +28860,7 @@ const _inverseMatrix$1 = /*@__PURE__*/ new Matrix4();
 const _ray$1 = /*@__PURE__*/ new Ray();
 const _sphere$1$1 = /*@__PURE__*/ new Sphere();
 
-class Line extends Object3D {
+class Line$2 extends Object3D {
 
 	constructor( geometry = new BufferGeometry(), material = new LineBasicMaterial() ) {
 
@@ -29056,12 +29094,12 @@ class Line extends Object3D {
 
 }
 
-Line.prototype.isLine = true;
+Line$2.prototype.isLine = true;
 
 const _start$2 = /*@__PURE__*/ new Vector3();
 const _end$2 = /*@__PURE__*/ new Vector3();
 
-class LineSegments extends Line {
+class LineSegments extends Line$2 {
 
 	constructor( geometry, material ) {
 
@@ -29116,7 +29154,7 @@ class LineSegments extends Line {
 
 LineSegments.prototype.isLineSegments = true;
 
-class LineLoop extends Line {
+class LineLoop extends Line$2 {
 
 	constructor( geometry, material ) {
 
@@ -45062,16 +45100,16 @@ class TransformControlsGizmo extends Object3D {
 				[ new Mesh( new OctahedronGeometry( 0.01, 2 ), matHelper ), null, null, null, 'helper' ]
 			],
 			DELTA: [
-				[ new Line( TranslateHelperGeometry(), matHelper ), null, null, null, 'helper' ]
+				[ new Line$2( TranslateHelperGeometry(), matHelper ), null, null, null, 'helper' ]
 			],
 			X: [
-				[ new Line( lineGeometry, matHelper.clone() ), [ - 1e3, 0, 0 ], null, [ 1e6, 1, 1 ], 'helper' ]
+				[ new Line$2( lineGeometry, matHelper.clone() ), [ - 1e3, 0, 0 ], null, [ 1e6, 1, 1 ], 'helper' ]
 			],
 			Y: [
-				[ new Line( lineGeometry, matHelper.clone() ), [ 0, - 1e3, 0 ], [ 0, 0, Math.PI / 2 ], [ 1e6, 1, 1 ], 'helper' ]
+				[ new Line$2( lineGeometry, matHelper.clone() ), [ 0, - 1e3, 0 ], [ 0, 0, Math.PI / 2 ], [ 1e6, 1, 1 ], 'helper' ]
 			],
 			Z: [
-				[ new Line( lineGeometry, matHelper.clone() ), [ 0, 0, - 1e3 ], [ 0, - Math.PI / 2, 0 ], [ 1e6, 1, 1 ], 'helper' ]
+				[ new Line$2( lineGeometry, matHelper.clone() ), [ 0, 0, - 1e3 ], [ 0, - Math.PI / 2, 0 ], [ 1e6, 1, 1 ], 'helper' ]
 			]
 		};
 
@@ -45095,7 +45133,7 @@ class TransformControlsGizmo extends Object3D {
 
 		const helperRotate = {
 			AXIS: [
-				[ new Line( lineGeometry, matHelper.clone() ), [ - 1e3, 0, 0 ], null, [ 1e6, 1, 1 ], 'helper' ]
+				[ new Line$2( lineGeometry, matHelper.clone() ), [ - 1e3, 0, 0 ], null, [ 1e6, 1, 1 ], 'helper' ]
 			]
 		};
 
@@ -45176,13 +45214,13 @@ class TransformControlsGizmo extends Object3D {
 
 		const helperScale = {
 			X: [
-				[ new Line( lineGeometry, matHelper.clone() ), [ - 1e3, 0, 0 ], null, [ 1e6, 1, 1 ], 'helper' ]
+				[ new Line$2( lineGeometry, matHelper.clone() ), [ - 1e3, 0, 0 ], null, [ 1e6, 1, 1 ], 'helper' ]
 			],
 			Y: [
-				[ new Line( lineGeometry, matHelper.clone() ), [ 0, - 1e3, 0 ], [ 0, 0, Math.PI / 2 ], [ 1e6, 1, 1 ], 'helper' ]
+				[ new Line$2( lineGeometry, matHelper.clone() ), [ 0, - 1e3, 0 ], [ 0, 0, Math.PI / 2 ], [ 1e6, 1, 1 ], 'helper' ]
 			],
 			Z: [
-				[ new Line( lineGeometry, matHelper.clone() ), [ 0, 0, - 1e3 ], [ 0, - Math.PI / 2, 0 ], [ 1e6, 1, 1 ], 'helper' ]
+				[ new Line$2( lineGeometry, matHelper.clone() ), [ 0, 0, - 1e3 ], [ 0, - Math.PI / 2, 0 ], [ 1e6, 1, 1 ], 'helper' ]
 			]
 		};
 
@@ -91959,7 +91997,7 @@ class IfcDimensionLine {
         this.length = this.getLength();
         this.center = this.getCenter();
         this.axis = new BufferGeometry().setFromPoints([start, end]);
-        this.line = new Line(this.axis, this.lineMaterial);
+        this.line = new Line$2(this.axis, this.lineMaterial);
         this.root.add(this.line);
         this.endpoint = endpointGeometry;
         this.addEndpointMeshes();
@@ -116133,7 +116171,7 @@ class GLTFParser {
 
 				} else if ( primitive.mode === WEBGL_CONSTANTS$1.LINE_STRIP ) {
 
-					mesh = new Line( geometry, material );
+					mesh = new Line$2( geometry, material );
 
 				} else if ( primitive.mode === WEBGL_CONSTANTS$1.LINE_LOOP ) {
 
@@ -121512,7 +121550,7 @@ class SelectionWindow {
     constructor(context) {
         this.context = context;
         this.toolMode = SelectionWindowMode.box;
-        this.selectionShape = new Line();
+        this.selectionShape = new Line$2();
         this.dragging = false;
         this.selectionPoints = [];
         this.selectionShapeNeedsUpdate = false;
@@ -121531,7 +121569,7 @@ class SelectionWindow {
         this.updateAll();
     }
     setupSelectionShape() {
-        this.selectionShape = new Line();
+        this.selectionShape = new Line$2();
         const mat = this.selectionShape.material;
         mat.depthTest = false;
         mat.color.set(0xff9800).convertSRGBToLinear();
@@ -121895,55 +121933,1988 @@ class IfcViewerAPI {
     }
 }
 
-const projects = [
-    {
-        name: "1",
-        id: "1",
-        url: "./ifc/01.ifc"
-    },
-    {
-        name: "2",
-        id: "2",
-        url: "./ifc/02.ifc"
-    },
-    {
-        name: "3",
-        id: "3",
-        url: "./ifc/03.ifc"
-    },
-    {
-        name: "4",
-        id: "4",
-        url: "./ifc/04.ifc"
-    },
-    {
-        name: "5",
-        id: "5",
-        url: "./ifc/05.ifc"
-    },
-    {
-        name: "6",
-        id: "1",
-        url: "./ifc/01.ifc"
-    },
-    {
-        name: "7",
-        id: "1",
-        url: "./ifc/01.ifc"
-    },
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+var dxfWriter = {exports: {}};
+
+class Handle$3 {
+    static seed = 0;
+
+    static next() {
+        return (++Handle$3.seed).toString(16).toUpperCase();
+    }
+
+    static peek() {
+        return (Handle$3.seed + 1).toString(16).toUpperCase();
+    }
+}
+
+var Handle_1 = Handle$3;
+
+const Handle$2 = Handle_1;
+
+class DatabaseObject$n {
+    constructor(subclass = null) {
+        this.handle = Handle$2.next();
+        this.ownerObjectHandle = "0";
+        this.subclassMarkers = [];
+        if (subclass) {
+            if (Array.isArray(subclass)) {
+                this.subclassMarkers.push(...subclass);
+            } else {
+                this.subclassMarkers.push(subclass);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param {TagsManager} manager
+     */
+    tags(manager) {
+        manager.push(5, this.handle);
+        manager.push(330, this.ownerObjectHandle);
+        for (const s of this.subclassMarkers) {
+            manager.push(100, s);
+        }
+    }
+}
+
+var DatabaseObject_1 = DatabaseObject$n;
+
+const DatabaseObject$m = DatabaseObject_1;
+
+class LineType$1 extends DatabaseObject$m {
+    /**
+     * @param {string} name
+     * @param {string} description
+     * @param {array} elements - if elem > 0 it is a line, if elem < 0 it is gap, if elem == 0.0 it is a
+     */
+    constructor(name, description, elements) {
+        super(["AcDbSymbolTableRecord", "AcDbLinetypeTableRecord"]);
+        this.name = name;
+        this.description = description;
+        this.elements = elements;
+    }
+
+    tags(manager) {
+        // https://www.autodesk.com/techpubs/autocad/acadr14/dxf/ltype_al_u05_c.htm
+        manager.push(0, "LTYPE");
+        super.tags(manager);
+        manager.push(2, this.name);
+        manager.push(3, this.description);
+        manager.push(70, 0);
+        manager.push(72, 65);
+        manager.push(73, this.elements.length);
+        manager.push(40, this.getElementsSum());
+
+        this.elements.forEach((element) => {
+            manager.push(49, element);
+            manager.push(74, 0);
+        });
+    }
+
+    getElementsSum() {
+        return this.elements.reduce((sum, element) => {
+            return sum + Math.abs(element);
+        }, 0);
+    }
+}
+
+var LineType_1 = LineType$1;
+
+const DatabaseObject$l = DatabaseObject_1;
+
+class Layer$1 extends DatabaseObject$l {
+    constructor(name, colorNumber, lineTypeName = null) {
+        super(["AcDbSymbolTableRecord", "AcDbLayerTableRecord"]);
+        this.name = name;
+        this.colorNumber = colorNumber;
+        this.lineTypeName = lineTypeName;
+        this.shapes = [];
+        this.trueColor = -1;
+    }
+
+    tags(manager) {
+        manager.push(0, "LAYER");
+        super.tags(manager);
+        manager.push(2, this.name);
+        if (this.trueColor !== -1) manager.push(420, this.trueColor);
+        else manager.push(62, this.colorNumber);
+
+        manager.push(70, 0);
+        if (this.lineTypeName) manager.push(6, this.lineTypeName);
+
+        /* Hard-pointer handle to PlotStyleName object; seems mandatory, but any value seems OK,
+         * including 0.
+         */
+        manager.push(390, 1);
+    }
+
+    setTrueColor(color) {
+        this.trueColor = color;
+    }
+
+    addShape(shape) {
+        this.shapes.push(shape);
+        shape.layer = this;
+    }
+
+    getShapes() {
+        return this.shapes;
+    }
+
+    shapesTags(space, manager) {
+        for (const shape of this.shapes) {
+            shape.ownerObjectHandle = space.handle;
+            shape.tags(manager);
+        }
+    }
+}
+
+var Layer_1 = Layer$1;
+
+const DatabaseObject$k = DatabaseObject_1;
+
+class Table$2 extends DatabaseObject$k {
+    constructor(name) {
+        super("AcDbSymbolTable");
+        this.name = name;
+        this.elements = [];
+    }
+
+    add(element) {
+        element.ownerObjectHandle = this.handle;
+        this.elements.push(element);
+    }
+
+    tags(manager) {
+        manager.push(0, "TABLE");
+        manager.push(2, this.name);
+        super.tags(manager);
+        manager.push(70, this.elements.length);
+
+        this.elements.forEach((element) => {
+            element.tags(manager);
+        });
+
+        manager.push(0, "ENDTAB");
+    }
+}
+
+var Table_1 = Table$2;
+
+const DatabaseObject$j = DatabaseObject_1;
+const Table$1 = Table_1;
+
+class DimStyleTable$1 extends Table$1 {
+    constructor(name) {
+        super(name);
+        this.subclassMarkers.push("AcDbDimStyleTable");
+    }
+
+    tags(manager) {
+        manager.push(0, "TABLE");
+        manager.push(2, this.name);
+        DatabaseObject$j.prototype.tags.call(this, manager);
+        manager.push(70, this.elements.length);
+        /* DIMTOL */
+        manager.push(71, 1);
+
+        for (const e of this.elements) {
+            e.tags(manager);
+        }
+
+        manager.push(0, "ENDTAB");
+    }
+}
+
+var DimStyleTable_1 = DimStyleTable$1;
+
+const DatabaseObject$i = DatabaseObject_1;
+
+class TextStyle$1 extends DatabaseObject$i {
+    constructor(name) {
+        super(["AcDbSymbolTableRecord", "AcDbTextStyleTableRecord"]);
+        this.name = name;
+    }
+
+    tags(manager) {
+        manager.push(0, "STYLE");
+        super.tags(manager);
+        manager.push(2, this.name);
+        /* No flags set */
+        manager.push(70, 0);
+        manager.push(40, 0);
+        manager.push(41, 1);
+        manager.push(50, 0);
+        manager.push(71, 0);
+        manager.push(42, 1);
+        manager.push(3, this.name);
+        manager.push(4, "");
+    }
+}
+
+var TextStyle_1 = TextStyle$1;
+
+const DatabaseObject$h = DatabaseObject_1;
+
+class Viewport$1 extends DatabaseObject$h {
+    constructor(name, height) {
+        super(["AcDbSymbolTableRecord", "AcDbViewportTableRecord"]);
+        this.name = name;
+        this.height = height;
+    }
+
+    tags(manager) {
+        manager.push(0, "VPORT");
+        super.tags(manager);
+        manager.push(2, this.name);
+        manager.push(40, this.height);
+        /* No flags set */
+        manager.push(70, 0);
+    }
+}
+
+var Viewport_1 = Viewport$1;
+
+const DatabaseObject$g = DatabaseObject_1;
+
+class AppId$1 extends DatabaseObject$g {
+    constructor(name) {
+        super(["AcDbSymbolTableRecord", "AcDbRegAppTableRecord"]);
+        this.name = name;
+    }
+
+    tags(manager) {
+        manager.push(0, "APPID");
+        super.tags(manager);
+        manager.push(2, this.name);
+        /* No flags set */
+        manager.push(70, 0);
+    }
+}
+
+var AppId_1 = AppId$1;
+
+const DatabaseObject$f = DatabaseObject_1;
+
+class Block$1 extends DatabaseObject$f {
+    constructor(name) {
+        super(["AcDbEntity", "AcDbBlockBegin"]);
+        this.name = name;
+        this.end = new DatabaseObject$f(["AcDbEntity", "AcDbBlockEnd"]);
+        this.recordHandle = null;
+    }
+
+    tags(manager) {
+        manager.push(0, "BLOCK");
+        super.tags(manager);
+        manager.push(2, this.name);
+        /* No flags set */
+        manager.push(70, 0);
+        /* Block top left corner */
+        manager.point(0, 0);
+        manager.push(3, this.name);
+        /* xref path name - nothing */
+        manager.push(1, "");
+
+        //XXX dump content here
+
+        manager.push(0, "ENDBLK");
+        this.end.tags(manager);
+    }
+}
+
+var Block_1 = Block$1;
+
+const DatabaseObject$e = DatabaseObject_1;
+
+class BlockRecord$1 extends DatabaseObject$e {
+    constructor(name) {
+        super(["AcDbSymbolTableRecord", "AcDbBlockTableRecord"]);
+        this.name = name;
+    }
+
+    tags(manager) {
+        manager.push(0, "BLOCK_RECORD");
+        super.tags(manager);
+        manager.push(2, this.name);
+        /* No flags set */
+        manager.push(70, 0);
+        /* Block explodability */
+        manager.push(280, 0);
+        /* Block scalability */
+        manager.push(281, 1);
+    }
+}
+
+var BlockRecord_1 = BlockRecord$1;
+
+const DatabaseObject$d = DatabaseObject_1;
+
+class Dictionary$1 extends DatabaseObject$d {
+    constructor() {
+        super("AcDbDictionary");
+        this.children = {};
+    }
+
+    /**
+     *
+     * @param {*} name
+     * @param {DatabaseObject} dictionary
+     */
+    addChildDictionary(name, dictionary) {
+        dictionary.ownerObjectHandle = this.handle;
+        this.children[name] = dictionary;
+    }
+
+    tags(manager) {
+        manager.push(0, "DICTIONARY");
+        super.tags(manager);
+        /* Duplicate record cloning flag - keep existing */
+        manager.push(281, 1);
+
+        const entries = Object.entries(this.children);
+        for (const entry of entries) {
+            const [name, dic] = entry;
+            manager.push(3, name);
+            manager.push(350, dic.handle);
+        }
+
+        const children = Object.values(this.children);
+        for (const c of children) {
+            c.tags(manager);
+        }
+    }
+}
+
+var Dictionary_1 = Dictionary$1;
+
+const DatabaseObject$c = DatabaseObject_1;
+
+class Line$1 extends DatabaseObject$c {
+    constructor(x1, y1, x2, y2) {
+        super(["AcDbEntity", "AcDbLine"]);
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+    }
+
+    tags(manager) {
+        //https://www.autodesk.com/techpubs/autocad/acadr14/dxf/line_al_u05_c.htm
+        manager.push(0, "LINE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x1, this.y1);
+
+        manager.push(11, this.x2);
+        manager.push(21, this.y2);
+        manager.push(31, 0);
+    }
+}
+
+var Line_1 = Line$1;
+
+const DatabaseObject$b = DatabaseObject_1;
+
+class Line3d$1 extends DatabaseObject$b {
+    constructor(x1, y1, z1, x2, y2, z2) {
+        super(["AcDbEntity", "AcDbLine"]);
+        this.x1 = x1;
+        this.y1 = y1;
+        this.z1 = z1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.z2 = z2;
+    }
+
+    tags(manager) {
+        //https://www.autodesk.com/techpubs/autocad/acadr14/dxf/line_al_u05_c.htm
+        manager.push(0, "LINE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x1, this.y1, this.z1);
+
+        manager.push(11, this.x2);
+        manager.push(21, this.y2);
+        manager.push(31, this.z2);
+    }
+}
+
+var Line3d_1 = Line3d$1;
+
+const DatabaseObject$a = DatabaseObject_1;
+
+class Arc$1 extends DatabaseObject$a {
+    /**
+     * @param {number} x - Center x
+     * @param {number} y - Center y
+     * @param {number} r - radius
+     * @param {number} startAngle - degree
+     * @param {number} endAngle - degree
+     */
+    constructor(x, y, r, startAngle, endAngle) {
+        super(["AcDbEntity", "AcDbCircle"]);
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.startAngle = startAngle;
+        this.endAngle = endAngle;
+    }
+
+    tags(manager) {
+        //https://www.autodesk.com/techpubs/autocad/acadr14/dxf/line_al_u05_c.htm
+        manager.push(0, "ARC");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x, this.y);
+        manager.push(40, this.r);
+        manager.push(100, "AcDbArc");
+        manager.push(50, this.startAngle);
+        manager.push(51, this.endAngle);
+    }
+}
+
+var Arc_1 = Arc$1;
+
+const DatabaseObject$9 = DatabaseObject_1;
+
+class Circle$1 extends DatabaseObject$9 {
+    /**
+     * @param {number} x - Center x
+     * @param {number} y - Center y
+     * @param {number} r - radius
+     */
+    constructor(x, y, r) {
+        super(["AcDbEntity", "AcDbCircle"]);
+        this.x = x;
+        this.y = y;
+        this.r = r;
+    }
+
+    tags(manager) {
+        //https://www.autodesk.com/techpubs/autocad/acadr14/dxf/circle_al_u05_c.htm
+        manager.push(0, "CIRCLE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x, this.y);
+        manager.push(40, this.r);
+    }
+}
+
+var Circle_1 = Circle$1;
+
+const DatabaseObject$8 = DatabaseObject_1;
+
+class Cylinder$1 extends DatabaseObject$8 {
+    /**
+     * @param {number} x - Center x
+     * @param {number} y - Center y
+     * @param {number} z - Center z
+     * @param {number} r - radius
+     * @param {number} thickness - thickness
+     * @param {number} extrusionDirectionX - Extrusion Direction x
+     * @param {number} extrusionDirectionY - Extrusion Direction y
+     * @param {number} extrusionDirectionZ - Extrusion Direction z
+     */
+    constructor(
+        x,
+        y,
+        z,
+        r,
+        thickness,
+        extrusionDirectionX,
+        extrusionDirectionY,
+        extrusionDirectionZ
+    ) {
+        super(["AcDbEntity", "AcDbCircle"]);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.r = r;
+        this.thickness = thickness;
+        (this.extrusionDirectionX = extrusionDirectionX),
+            (this.extrusionDirectionY = extrusionDirectionY),
+            (this.extrusionDirectionZ = extrusionDirectionZ);
+    }
+
+    tags(manager) {
+        manager.push(0, "CIRCLE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x, this.y, this.z);
+        manager.push(40, this.r);
+        manager.push(39, this.thickness);
+        manager.push(210, this.extrusionDirectionX);
+        manager.push(220, this.extrusionDirectionY);
+        manager.push(230, this.extrusionDirectionZ);
+    }
+}
+
+var Cylinder_1 = Cylinder$1;
+
+const DatabaseObject$7 = DatabaseObject_1;
+
+const H_ALIGN_CODES = ["left", "center", "right"];
+const V_ALIGN_CODES = ["baseline", "bottom", "middle", "top"];
+
+class Text$1 extends DatabaseObject$7 {
+    /**
+     * @param {number} x - x
+     * @param {number} y - y
+     * @param {number} height - Text height
+     * @param {number} rotation - Text rotation
+     * @param {string} value - the string itself
+     * @param {string} [horizontalAlignment="left"] left | center | right
+     * @param {string} [verticalAlignment="baseline"] baseline | bottom | middle | top
+     */
+    constructor(
+        x,
+        y,
+        height,
+        rotation,
+        value,
+        horizontalAlignment = "left",
+        verticalAlignment = "baseline"
+    ) {
+        super(["AcDbEntity", "AcDbText"]);
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.rotation = rotation;
+        this.value = value;
+        this.hAlign = horizontalAlignment;
+        this.vAlign = verticalAlignment;
+    }
+
+    tags(manager) {
+        //https://www.autodesk.com/techpubs/autocad/acadr14/dxf/text_al_u05_c.htm
+        manager.push(0, "TEXT");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x, this.y);
+        manager.push(40, this.height);
+        manager.push(1, this.value);
+        manager.push(50, this.rotation);
+
+        if (
+            H_ALIGN_CODES.includes(this.hAlign, 1) ||
+            V_ALIGN_CODES.includes(this.vAlign, 1)
+        ) {
+            manager.push(72, Math.max(H_ALIGN_CODES.indexOf(this.hAlign), 0));
+
+            manager.push(11, this.x);
+            manager.push(21, this.y);
+            manager.push(31, 0);
+
+            /* AutoCAD needs this one more time, yes, exactly here. */
+            manager.push(100, "AcDbText");
+            manager.push(73, Math.max(V_ALIGN_CODES.indexOf(this.vAlign), 0));
+        } else {
+            /* AutoCAD needs this one more time. */
+            manager.push(100, "AcDbText");
+        }
+    }
+}
+
+var Text_1 = Text$1;
+
+const DatabaseObject$6 = DatabaseObject_1;
+
+class Polyline$1 extends DatabaseObject$6 {
+    /**
+     * @param {array} points - Array of points like [ [x1, y1], [x2, y2, bulge]... ]
+     * @param {boolean} closed
+     * @param {number} startWidth
+     * @param {number} endWidth
+     */
+    constructor(points, closed = false, startWidth = 0, endWidth = 0) {
+        super(["AcDbEntity", "AcDbPolyline"]);
+        this.points = points;
+        this.closed = closed;
+        this.startWidth = startWidth;
+        this.endWidth = endWidth;
+    }
+
+    tags(manager) {
+        manager.push(0, "LWPOLYLINE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.push(6, "ByLayer");
+        manager.push(62, 256);
+        manager.push(370, -1);
+        manager.push(90, this.points.length);
+        manager.push(70, this.closed ? 1 : 0);
+
+        this.points.forEach((point) => {
+            const [x, y, z] = point;
+            manager.push(10, x);
+            manager.push(20, y);
+            if (this.startWidth !== 0 || this.endWidth !== 0) {
+                manager.push(40, this.startWidth);
+                manager.push(41, this.endWidth);
+            }
+            if (z !== undefined) manager.push(42, z);
+        });
+    }
+}
+
+var Polyline_1 = Polyline$1;
+
+const DatabaseObject$5 = DatabaseObject_1;
+
+class Vertex$1 extends DatabaseObject$5 {
+    /**
+     *
+     * @param {number} x The X coordinate
+     * @param {number} y The Y coordinate
+     * @param {number} z The Z coordinate
+     */
+    constructor(x, y, z) {
+        super(["AcDbEntity", "AcDbVertex", "AcDb3dPolylineVertex"]);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    tags(manager) {
+        manager.push(0, "VERTEX");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x, this.y, this.z);
+        manager.push(70, 32);
+    }
+}
+
+var Vertex_1 = Vertex$1;
+
+const DatabaseObject$4 = DatabaseObject_1;
+const Handle$1 = Handle_1;
+const Vertex = Vertex_1;
+
+class Polyline3d$1 extends DatabaseObject$4 {
+    /**
+     * @param {[number, number, number][]} points - Array of points like [ [x1, y1, z1], [x2, y2, z2]... ]
+     */
+    constructor(points) {
+        super(["AcDbEntity", "AcDb3dPolyline"]);
+        this.verticies = points.map((point) => {
+            const [x, y, z] = point;
+            const vertex = new Vertex(x, y, z);
+            vertex.ownerObjectHandle = this.handle;
+            return vertex;
+        });
+        this.seqendHandle = Handle$1.next();
+    }
+
+    tags(manager) {
+        manager.push(0, "POLYLINE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.push(66, 1);
+        manager.push(70, 0);
+        manager.point(0, 0);
+
+        this.verticies.forEach((vertex) => {
+            vertex.layer = this.layer;
+            vertex.tags(manager);
+        });
+
+        manager.push(0, "SEQEND");
+        manager.push(5, this.seqendHandle);
+        manager.push(100, "AcDbEntity");
+        manager.push(8, this.layer.name);
+    }
+}
+
+var Polyline3d_1 = Polyline3d$1;
+
+const DatabaseObject$3 = DatabaseObject_1;
+
+class Face$1 extends DatabaseObject$3 {
+    constructor(x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4) {
+        super(["AcDbEntity", "AcDbFace"]);
+        this.x1 = x1;
+        this.y1 = y1;
+        this.z1 = z1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.z2 = z2;
+        this.x3 = x3;
+        this.y3 = y3;
+        this.z3 = z3;
+        this.x4 = x4;
+        this.y4 = y4;
+        this.z4 = z4;
+    }
+
+    tags(manager) {
+        //https://www.autodesk.com/techpubs/autocad/acadr14/dxf/3dface_al_u05_c.htm
+        manager.push(0, "3DFACE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x1, this.y1, this.z1);
+
+        manager.push(11, this.x2);
+        manager.push(21, this.y2);
+        manager.push(31, this.z2);
+
+        manager.push(12, this.x3);
+        manager.push(22, this.y3);
+        manager.push(32, this.z3);
+
+        manager.push(13, this.x4);
+        manager.push(23, this.y4);
+        manager.push(33, this.z4);
+    }
+}
+
+var Face_1 = Face$1;
+
+const DatabaseObject$2 = DatabaseObject_1;
+
+class Point$1 extends DatabaseObject$2 {
+    constructor(x, y) {
+        super(["AcDbEntity", "AcDbPoint"]);
+        this.x = x;
+        this.y = y;
+    }
+
+    tags(manager) {
+        //https://www.autodesk.com/techpubs/autocad/acadr14/dxf/point_al_u05_c.htm
+        manager.push(0, "POINT");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x, this.y);
+    }
+}
+
+var Point_1 = Point$1;
+
+const DatabaseObject$1 = DatabaseObject_1;
+
+class Spline$1 extends DatabaseObject$1 {
+    /**
+     * Creates a spline. See https://www.autodesk.com/techpubs/autocad/acad2000/dxf/spline_dxf_06.htm
+     * @param {[Array]} controlPoints - Array of control points like [ [x1, y1], [x2, y2]... ]
+     * @param {number} degree - Degree of spline: 2 for quadratic, 3 for cubic. Default is 3
+     * @param {[number]} knots - Knot vector array. If null, will use a uniform knot vector. Default is null
+     * @param {[number]} weights - Control point weights. If provided, must be one weight for each control point. Default is null
+     * @param {[Array]} fitPoints - Array of fit points like [ [x1, y1], [x2, y2]... ]
+     */
+    constructor(
+        controlPoints,
+        degree = 3,
+        knots = null,
+        weights = null,
+        fitPoints = []
+    ) {
+        super(["AcDbEntity", "AcDbSpline"]);
+        if (controlPoints.length < degree + 1) {
+            throw new Error(
+                `For degree ${degree} spline, expected at least ${
+                    degree + 1
+                } control points, but received only ${controlPoints.length}`
+            );
+        }
+
+        if (knots == null) {
+            // Examples:
+            // degree 2, 3 pts:  0 0 0 1 1 1
+            // degree 2, 4 pts:  0 0 0 1 2 2 2
+            // degree 2, 5 pts:  0 0 0 1 2 3 3 3
+            // degree 3, 4 pts:  0 0 0 0 1 1 1 1
+            // degree 3, 5 pts:  0 0 0 0 1 2 2 2 2
+
+            knots = [];
+            for (let i = 0; i < degree + 1; i++) {
+                knots.push(0);
+            }
+            for (let i = 1; i < controlPoints.length - degree; i++) {
+                knots.push(i);
+            }
+            for (let i = 0; i < degree + 1; i++) {
+                knots.push(controlPoints.length - degree);
+            }
+        }
+
+        if (knots.length !== controlPoints.length + degree + 1) {
+            throw new Error(
+                `Invalid knot vector length. Expected ${
+                    controlPoints.length + degree + 1
+                } but received ${knots.length}.`
+            );
+        }
+
+        this.controlPoints = controlPoints;
+        this.knots = knots;
+        this.fitPoints = fitPoints;
+        this.degree = degree;
+        this.weights = weights;
+
+        const closed = 0;
+        const periodic = 0;
+        const rational = this.weights ? 1 : 0;
+        const planar = 1;
+        const linear = 0;
+
+        this.type =
+            closed * 1 + periodic * 2 + rational * 4 + planar * 8 + linear * 16;
+
+        // Not certain where the values of these flags came from so I'm going to leave them commented for now
+        // const closed = 0
+        // const periodic = 0
+        // const rational = 1
+        // const planar = 1
+        // const linear = 0
+        // const splineType = 1024 * closed + 128 * periodic + 8 * rational + 4 * planar + 2 * linear
+    }
+
+    tags(manager) {
+        // https://www.autodesk.com/techpubs/autocad/acad2000/dxf/spline_dxf_06.htm
+        manager.push(0, "SPLINE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+
+        manager.push(210, 0.0);
+        manager.push(220, 0.0);
+        manager.push(230, 1.0);
+
+        manager.push(70, this.type);
+        manager.push(71, this.degree);
+        manager.push(72, this.knots.length);
+        manager.push(73, this.controlPoints.length);
+        manager.push(74, this.fitPoints.length);
+
+        manager.push(42, 1e-7);
+        manager.push(43, 1e-7);
+        manager.push(44, 1e-10);
+
+        this.knots.forEach((knot) => {
+            manager.push(40, knot);
+        });
+
+        if (this.weights) {
+            this.weights.forEach((weight) => {
+                manager.push(41, weight);
+            });
+        }
+
+        this.controlPoints.forEach((point) => {
+            manager.point(point[0], point[1]);
+        });
+    }
+}
+
+var Spline_1 = Spline$1;
+
+const DatabaseObject = DatabaseObject_1;
+
+class Ellipse$1 extends DatabaseObject {
+    /**
+     * Creates an ellipse.
+     * @param {number} x - Center x
+     * @param {number} y - Center y
+     * @param {number} majorAxisX - Endpoint x of major axis, relative to center
+     * @param {number} majorAxisY - Endpoint y of major axis, relative to center
+     * @param {number} axisRatio - Ratio of minor axis to major axis
+     * @param {number} startAngle - Start angle
+     * @param {number} endAngle - End angle
+     */
+    constructor(x, y, majorAxisX, majorAxisY, axisRatio, startAngle, endAngle) {
+        super(["AcDbEntity", "AcDbEllipse"]);
+        this.x = x;
+        this.y = y;
+        this.majorAxisX = majorAxisX;
+        this.majorAxisY = majorAxisY;
+        this.axisRatio = axisRatio;
+        this.startAngle = startAngle;
+        this.endAngle = endAngle;
+    }
+
+    tags(manager) {
+        // https://www.autodesk.com/techpubs/autocad/acadr14/dxf/ellipse_al_u05_c.htm
+        manager.push(0, "ELLIPSE");
+        super.tags(manager);
+        manager.push(8, this.layer.name);
+        manager.point(this.x, this.y);
+        manager.push(11, this.majorAxisX);
+        manager.push(21, this.majorAxisY);
+        manager.push(31, 0);
+
+        manager.push(40, this.axisRatio);
+        manager.push(41, this.startAngle);
+        manager.push(42, this.endAngle);
+    }
+}
+
+var Ellipse_1 = Ellipse$1;
+
+class TagsManager$1 {
+    constructor() {
+        this.lines = [];
+    }
+
+    /**
+     *
+     * @param {number} x
+     * @param {number} y
+     * @param {number} z
+     */
+    point(x, y, z = 0) {
+        this.push(10, x);
+        this.push(20, y);
+        this.push(30, z);
+    }
+
+    /**
+     *
+     * @param {string} name The name of the section
+     */
+    start(name) {
+        this.push(0, "SECTION");
+        this.push(2, name);
+    }
+
+    end() {
+        this.push(0, "ENDSEC");
+    }
+
+    addHeaderVariable(name, tagsElements) {
+        this.push(9, `$${name}`);
+        tagsElements.forEach((tagElement) => {
+            this.push(tagElement[0], tagElement[1]);
+        });
+    }
+
+    push(code, value) {
+        this.lines.push(code, value);
+    }
+
+    toDxfString() {
+        return this.lines.join("\n");
+    }
+}
+
+var TagsManager_1 = TagsManager$1;
+
+const LineType = LineType_1;
+const Layer = Layer_1;
+const Table = Table_1;
+const DimStyleTable = DimStyleTable_1;
+const TextStyle = TextStyle_1;
+const Viewport = Viewport_1;
+const AppId = AppId_1;
+const Block = Block_1;
+const BlockRecord = BlockRecord_1;
+const Dictionary = Dictionary_1;
+const Line = Line_1;
+const Line3d = Line3d_1;
+const Arc = Arc_1;
+const Circle = Circle_1;
+const Cylinder = Cylinder_1;
+const Text = Text_1;
+const Polyline = Polyline_1;
+const Polyline3d = Polyline3d_1;
+const Face = Face_1;
+const Point = Point_1;
+const Spline = Spline_1;
+const Ellipse = Ellipse_1;
+const TagsManager = TagsManager_1;
+const Handle = Handle_1;
+
+class Drawing$1 {
+    constructor() {
+        this.layers = {};
+        this.activeLayer = null;
+        this.lineTypes = {};
+        this.headers = {};
+        this.tables = {};
+        this.blocks = {};
+
+        this.dictionary = new Dictionary();
+
+        this.setUnits("Unitless");
+
+        for (const ltype of Drawing$1.LINE_TYPES) {
+            this.addLineType(ltype.name, ltype.description, ltype.elements);
+        }
+
+        for (const l of Drawing$1.LAYERS) {
+            this.addLayer(l.name, l.colorNumber, l.lineTypeName);
+        }
+
+        this.setActiveLayer("0");
+
+        // Must call this function
+        this.generateAutocadExtras();
+    }
+
+    /**
+     * @param {string} name
+     * @param {string} description
+     * @param {array} elements - if elem > 0 it is a line, if elem < 0 it is gap, if elem == 0.0 it is a
+     */
+    addLineType(name, description, elements) {
+        this.lineTypes[name] = new LineType(name, description, elements);
+        return this;
+    }
+
+    addLayer(name, colorNumber, lineTypeName) {
+        this.layers[name] = new Layer(name, colorNumber, lineTypeName);
+        return this;
+    }
+
+    setActiveLayer(name) {
+        this.activeLayer = this.layers[name];
+        return this;
+    }
+
+    addTable(name) {
+        const table = new Table(name);
+        this.tables[name] = table;
+        return table;
+    }
+
+    /**
+     *
+     * @param {string} name The name of the block.
+     * @returns {Block}
+     */
+    addBlock(name) {
+        const block = new Block(name);
+        this.blocks[name] = block;
+        return block;
+    }
+
+    drawLine(x1, y1, x2, y2) {
+        this.activeLayer.addShape(new Line(x1, y1, x2, y2));
+        return this;
+    }
+
+    drawLine3d(x1, y1, z1, x2, y2, z2) {
+        this.activeLayer.addShape(new Line3d(x1, y1, z1, x2, y2, z2));
+        return this;
+    }
+
+    drawPoint(x, y) {
+        this.activeLayer.addShape(new Point(x, y));
+        return this;
+    }
+
+    drawRect(x1, y1, x2, y2, cornerLength, cornerBulge) {
+        const w = x2 - x1;
+        const h = y2 - y1;
+        cornerBulge = cornerBulge || 0;
+        let p = null;
+        if (!cornerLength) {
+            p = new Polyline(
+                [
+                    [x1, y1],
+                    [x1, y1 + h],
+                    [x1 + w, y1 + h],
+                    [x1 + w, y1],
+                ],
+                true
+            );
+        } else {
+            p = new Polyline(
+                [
+                    [x1 + w - cornerLength, y1, cornerBulge], // 1
+                    [x1 + w, y1 + cornerLength], // 2
+                    [x1 + w, y1 + h - cornerLength, cornerBulge], // 3
+                    [x1 + w - cornerLength, y1 + h], // 4
+                    [x1 + cornerLength, y1 + h, cornerBulge], // 5
+                    [x1, y1 + h - cornerLength], // 6
+                    [x1, y1 + cornerLength, cornerBulge], // 7
+                    [x1 + cornerLength, y1], // 8
+                ],
+                true
+            );
+        }
+        this.activeLayer.addShape(p);
+        return this;
+    }
+
+    /**
+     * Draw a regular convex polygon as a polyline entity.
+     *
+     * @see [Regular polygon | Wikipedia](https://en.wikipedia.org/wiki/Regular_polygon)
+     *
+     * @param {number} x - The X coordinate of the center of the polygon.
+     * @param {number} y - The Y coordinate of the center of the polygon.
+     * @param {number} numberOfSides - The number of sides.
+     * @param {number} radius - The radius.
+     * @param {number} rotation - The  rotation angle (in Degrees) of the polygon. By default 0.
+     * @param {boolean} circumscribed - If `true` is a polygon in which each side is a tangent to a circle.
+     * If `false` is a polygon in which all vertices lie on a circle. By default `false`.
+     *
+     * @returns {Drawing} - The current object of {@link Drawing}.
+     */
+    drawPolygon(
+        x,
+        y,
+        numberOfSides,
+        radius,
+        rotation = 0,
+        circumscribed = false
+    ) {
+        const angle = (2 * Math.PI) / numberOfSides;
+        const vertices = [];
+        let d = radius;
+        const rotationRad = (rotation * Math.PI) / 180;
+        if (circumscribed) d = radius / Math.cos(Math.PI / numberOfSides);
+        for (let i = 0; i < numberOfSides; i++) {
+            vertices.push([
+                x + d * Math.sin(rotationRad + i * angle),
+                y + d * Math.cos(rotationRad + i * angle),
+            ]);
+        }
+        this.activeLayer.addShape(new Polyline(vertices, true));
+        return this;
+    }
+
+    /**
+     * @param {number} x1 - Center x
+     * @param {number} y1 - Center y
+     * @param {number} r - radius
+     * @param {number} startAngle - degree
+     * @param {number} endAngle - degree
+     */
+    drawArc(x1, y1, r, startAngle, endAngle) {
+        this.activeLayer.addShape(new Arc(x1, y1, r, startAngle, endAngle));
+        return this;
+    }
+
+    /**
+     * @param {number} x1 - Center x
+     * @param {number} y1 - Center y
+     * @param {number} r - radius
+     */
+    drawCircle(x1, y1, r) {
+        this.activeLayer.addShape(new Circle(x1, y1, r));
+        return this;
+    }
+
+    /**
+     * @param {number} x1 - Center x
+     * @param {number} y1 - Center y
+     * @param {number} z1 - Center z
+     * @param {number} r - radius
+     * @param {number} thickness - thickness
+     * @param {number} extrusionDirectionX - Extrusion Direction x
+     * @param {number} extrusionDirectionY - Extrusion Direction y
+     * @param {number} extrusionDirectionZ - Extrusion Direction z
+     */
+    drawCylinder(
+        x1,
+        y1,
+        z1,
+        r,
+        thickness,
+        extrusionDirectionX,
+        extrusionDirectionY,
+        extrusionDirectionZ
+    ) {
+        this.activeLayer.addShape(
+            new Cylinder(
+                x1,
+                y1,
+                z1,
+                r,
+                thickness,
+                extrusionDirectionX,
+                extrusionDirectionY,
+                extrusionDirectionZ
+            )
+        );
+        return this;
+    }
+
+    /**
+     * @param {number} x1 - x
+     * @param {number} y1 - y
+     * @param {number} height - Text height
+     * @param {number} rotation - Text rotation
+     * @param {string} value - the string itself
+     * @param {string} [horizontalAlignment="left"] left | center | right
+     * @param {string} [verticalAlignment="baseline"] baseline | bottom | middle | top
+     */
+    drawText(
+        x1,
+        y1,
+        height,
+        rotation,
+        value,
+        horizontalAlignment = "left",
+        verticalAlignment = "baseline"
+    ) {
+        this.activeLayer.addShape(
+            new Text(
+                x1,
+                y1,
+                height,
+                rotation,
+                value,
+                horizontalAlignment,
+                verticalAlignment
+            )
+        );
+        return this;
+    }
+
+    /**
+     * @param {[number, number][]} points - Array of points like [ [x1, y1], [x2, y2]... ]
+     * @param {boolean} closed - Closed polyline flag
+     * @param {number} startWidth - Default start width
+     * @param {number} endWidth - Default end width
+     */
+    drawPolyline(points, closed = false, startWidth = 0, endWidth = 0) {
+        this.activeLayer.addShape(
+            new Polyline(points, closed, startWidth, endWidth)
+        );
+        return this;
+    }
+
+    /**
+     * @param {[number, number, number][]} points - Array of points like [ [x1, y1, z1], [x2, y2, z1]... ]
+     */
+    drawPolyline3d(points) {
+        points.forEach((point) => {
+            if (point.length !== 3) {
+                throw "Require 3D coordinates";
+            }
+        });
+        this.activeLayer.addShape(new Polyline3d(points));
+        return this;
+    }
+
+    /**
+     *
+     * @param {number} trueColor - Integer representing the true color, can be passed as an hexadecimal value of the form 0xRRGGBB
+     */
+    setTrueColor(trueColor) {
+        this.activeLayer.setTrueColor(trueColor);
+        return this;
+    }
+
+    /**
+     * Draw a spline.
+     * @param {[Array]} controlPoints - Array of control points like [ [x1, y1], [x2, y2]... ]
+     * @param {number} degree - Degree of spline: 2 for quadratic, 3 for cubic. Default is 3
+     * @param {[number]} knots - Knot vector array. If null, will use a uniform knot vector. Default is null
+     * @param {[number]} weights - Control point weights. If provided, must be one weight for each control point. Default is null
+     * @param {[Array]} fitPoints - Array of fit points like [ [x1, y1], [x2, y2]... ]
+     */
+    drawSpline(
+        controlPoints,
+        degree = 3,
+        knots = null,
+        weights = null,
+        fitPoints = []
+    ) {
+        this.activeLayer.addShape(
+            new Spline(controlPoints, degree, knots, weights, fitPoints)
+        );
+        return this;
+    }
+
+    /**
+     * Draw an ellipse.
+     * @param {number} x1 - Center x
+     * @param {number} y1 - Center y
+     * @param {number} majorAxisX - Endpoint x of major axis, relative to center
+     * @param {number} majorAxisY - Endpoint y of major axis, relative to center
+     * @param {number} axisRatio - Ratio of minor axis to major axis
+     * @param {number} startAngle - Start angle
+     * @param {number} endAngle - End angle
+     */
+    drawEllipse(
+        x1,
+        y1,
+        majorAxisX,
+        majorAxisY,
+        axisRatio,
+        startAngle = 0,
+        endAngle = 2 * Math.PI
+    ) {
+        this.activeLayer.addShape(
+            new Ellipse(
+                x1,
+                y1,
+                majorAxisX,
+                majorAxisY,
+                axisRatio,
+                startAngle,
+                endAngle
+            )
+        );
+        return this;
+    }
+
+    /**
+     * @param {number} x1 - x
+     * @param {number} y1 - y
+     * @param {number} z1 - z
+     * @param {number} x2 - x
+     * @param {number} y2 - y
+     * @param {number} z2 - z
+     * @param {number} x3 - x
+     * @param {number} y3 - y
+     * @param {number} z3 - z
+     * @param {number} x4 - x
+     * @param {number} y4 - y
+     * @param {number} z4 - z
+     */
+    drawFace(x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4) {
+        this.activeLayer.addShape(
+            new Face(x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, z4)
+        );
+        return this;
+    }
+
+    _ltypeTable() {
+        const t = new Table("LTYPE");
+        const ltypes = Object.values(this.lineTypes);
+        for (const lt of ltypes) t.add(lt);
+        return t;
+    }
+
+    _layerTable(manager) {
+        const t = new Table("LAYER");
+        const layers = Object.values(this.layers);
+        for (const l of layers) t.add(l);
+        return t;
+    }
+
+    /**
+     * @see https://www.autodesk.com/techpubs/autocad/acadr14/dxf/header_section_al_u05_c.htm
+     * @see https://www.autodesk.com/techpubs/autocad/acad2000/dxf/header_section_group_codes_dxf_02.htm
+     *
+     * @param {string} variable
+     * @param {array} values Array of "two elements arrays". [  [value1_GroupCode, value1_value], [value2_GroupCode, value2_value]  ]
+     */
+    header(variable, values) {
+        this.headers[variable] = values;
+        return this;
+    }
+
+    /**
+     *
+     * @param {string} unit see Drawing.UNITS
+     */
+    setUnits(unit) {
+        typeof Drawing$1.UNITS[unit] != "undefined"
+                ? Drawing$1.UNITS[unit]
+                : Drawing$1.UNITS["Unitless"];
+        this.header("INSUNITS", [[70, Drawing$1.UNITS[unit]]]);
+        return this;
+    }
+
+    /** Generate additional DXF metadata which are required to successfully open resulted document
+     * in AutoDesk products. Call this method before serializing the drawing to get the most
+     * compatible result.
+     */
+    generateAutocadExtras() {
+        if (!this.headers["ACADVER"]) {
+            /* AutoCAD 2007 version. */
+            this.header("ACADVER", [[1, "AC1021"]]);
+        }
+
+        if (!this.lineTypes["ByBlock"]) {
+            this.addLineType("ByBlock", "", []);
+        }
+        if (!this.lineTypes["ByLayer"]) {
+            this.addLineType("ByLayer", "", []);
+        }
+
+        let vpTable = this.tables["VPORT"];
+        if (!vpTable) {
+            vpTable = this.addTable("VPORT");
+        }
+        let styleTable = this.tables["STYLE"];
+        if (!styleTable) {
+            styleTable = this.addTable("STYLE");
+        }
+        if (!this.tables["VIEW"]) {
+            this.addTable("VIEW");
+        }
+        if (!this.tables["UCS"]) {
+            this.addTable("UCS");
+        }
+        let appIdTable = this.tables["APPID"];
+        if (!appIdTable) {
+            appIdTable = this.addTable("APPID");
+        }
+        if (!this.tables["DIMSTYLE"]) {
+            const t = new DimStyleTable("DIMSTYLE");
+            this.tables["DIMSTYLE"] = t;
+        }
+
+        vpTable.add(new Viewport("*ACTIVE", 1000));
+
+        /* Non-default text alignment is not applied without this entry. */
+        styleTable.add(new TextStyle("standard"));
+
+        appIdTable.add(new AppId("ACAD"));
+
+        this.modelSpace = this.addBlock("*Model_Space");
+        this.addBlock("*Paper_Space");
+
+        const d = new Dictionary();
+        this.dictionary.addChildDictionary("ACAD_GROUP", d);
+    }
+
+    _tagsManager() {
+        const manager = new TagsManager();
+
+        // Setup
+        const blockRecordTable = new Table("BLOCK_RECORD");
+        const blocks = Object.values(this.blocks);
+        for (const b of blocks) {
+            const r = new BlockRecord(b.name);
+            blockRecordTable.add(r);
+        }
+        const ltypeTable = this._ltypeTable();
+        const layerTable = this._layerTable();
+
+        // Header section start.
+        manager.start("HEADER");
+        manager.addHeaderVariable("HANDSEED", [[5, Handle.peek()]]);
+        const variables = Object.entries(this.headers);
+        for (const v of variables) {
+            const [name, values] = v;
+            manager.addHeaderVariable(name, values);
+        }
+        manager.end();
+        // Header section end.
+
+        // Classes section start.
+        manager.start("CLASSES");
+        // Empty CLASSES section for compatibility
+        manager.end();
+        // Classes section end.
+
+        // Tables section start.
+        manager.start("TABLES");
+        ltypeTable.tags(manager);
+        layerTable.tags(manager);
+        const tables = Object.values(this.tables);
+        for (const t of tables) {
+            t.tags(manager);
+        }
+        blockRecordTable.tags(manager);
+        manager.end();
+        // Tables section end.
+
+        // Blocks section start.
+        manager.start("BLOCKS");
+        for (const b of blocks) {
+            b.tags(manager);
+        }
+        manager.end();
+        // Blocks section end.
+
+        // Entities section start.
+        manager.start("ENTITIES");
+        const layers = Object.values(this.layers);
+        for (const l of layers) {
+            l.shapesTags(this.modelSpace, manager);
+        }
+        manager.end();
+        // Entities section end.
+
+        // Objects section start.
+        manager.start("OBJECTS");
+        this.dictionary.tags(manager);
+        manager.end();
+        // Objects section end.
+
+        manager.push(0, "EOF");
+
+        return manager;
+    }
+
+    toDxfString() {
+        return this._tagsManager().toDxfString();
+    }
+}
+
+//AutoCAD Color Index (ACI)
+//http://sub-atomic.com/~moses/acadcolors.html
+Drawing$1.ACI = {
+    LAYER: 0,
+    RED: 1,
+    YELLOW: 2,
+    GREEN: 3,
+    CYAN: 4,
+    BLUE: 5,
+    MAGENTA: 6,
+    WHITE: 7,
+};
+
+Drawing$1.LINE_TYPES = [
+    { name: "CONTINUOUS", description: "______", elements: [] },
+    { name: "DASHED", description: "_ _ _ ", elements: [5.0, -5.0] },
+    { name: "DOTTED", description: ". . . ", elements: [0.0, -5.0] },
 ];
+
+Drawing$1.LAYERS = [
+    { name: "0", colorNumber: Drawing$1.ACI.WHITE, lineTypeName: "CONTINUOUS" },
+];
+
+//https://www.autodesk.com/techpubs/autocad/acad2000/dxf/header_section_group_codes_dxf_02.htm
+Drawing$1.UNITS = {
+    Unitless: 0,
+    Inches: 1,
+    Feet: 2,
+    Miles: 3,
+    Millimeters: 4,
+    Centimeters: 5,
+    Meters: 6,
+    Kilometers: 7,
+    Microinches: 8,
+    Mils: 9,
+    Yards: 10,
+    Angstroms: 11,
+    Nanometers: 12,
+    Microns: 13,
+    Decimeters: 14,
+    Decameters: 15,
+    Hectometers: 16,
+    Gigameters: 17,
+    "Astronomical units": 18,
+    "Light years": 19,
+    Parsecs: 20,
+};
+
+var Drawing_1 = Drawing$1;
+
+(function (module) {
+	module.exports = Drawing_1;
+} (dxfWriter));
+
+var Drawing = /*@__PURE__*/getDefaultExportFromCjs(dxfWriter.exports);
 
 const container = document.getElementById('viewer-container');
 const viewer = new IfcViewerAPI({container, backgroundColor: new Color(255, 255, 255)});
-
 viewer.axes.setAxes();
 viewer.grid.setGrid();
 
-const currentUrl = window.location.href;
-const url = new URL(currentUrl);
-const currentProjectID = url.searchParams.get('id');
+const scene = viewer.context.getScene();
+let model;
+let allPlans;
 
-const currentProject = projects.find(project => project.id === currentProjectID);
+loadIfc();
+async function loadIfc() {
+  const currentUrl = window.location.href;
+  const url = new URL(currentUrl);
+  const currentProjectID = url.searchParams.get('id');
+  const currentProject = projects.find(project => project.id === currentProjectID);
+  viewer.IFC.setWasmPath('../');
+  model = await viewer.IFC.loadIfcUrl(currentProject.url);
+  await viewer.shadowDropper.renderShadow(model.modelID);
 
-viewer.IFC.setWasmPath('../');
-viewer.IFC.loadIfcUrl(currentProject.url);
+  // For checkboxes
+  model.removeFromParent();
+  togglePickable(model, false);
+  await setupAllCategories();
+
+  await viewer.plans.computeAllPlanViews(model.modelID);
+  const lineMaterial = new LineBasicMaterial({color: 'black'});
+  const baseMaterial = new MeshBasicMaterial({
+    polygonOffset: true,
+    polygonOffsetFactor: 1,
+    polygonOffsetUnits: 1  
+  });
+  viewer.edges.create('example-edges', model.modelID, lineMaterial, baseMaterial);
+
+  const containerForPlans = document.getElementById('button-container');
+  allPlans = viewer.plans.getAll(model.modelID);
+  for(const plan of allPlans) {
+    const currentPlan = viewer.plans.planLists[model.modelID][plan];
+
+    const button = document.createElement('button');
+    containerForPlans.appendChild(button);
+    button.textContent = currentPlan.name;
+    button.onclick = () => {
+      viewer.plans.goTo(model.modelID, plan);
+      viewer.edges.toggle('example-edges', true);
+      toggleShadow(false);
+    };
+  }
+  const button = document.createElement('button');
+  containerForPlans.appendChild(button);
+  button.textContent = 'Exit floorplans';
+  button.onclick = () => {
+    viewer.plans.exitPlanView();
+    viewer.edges.toggle('example-edges', false);
+    toggleShadow(true);
+  };
+
+  // For floorplan export
+  const projectFloorplan = await viewer.IFC.getSpatialStructure(model.modelID);
+  const storeys = projectFloorplan.children[0].children[0].children;
+  for(const storey of storeys) {
+    for(const child of storey.children) {
+      if(child.children.length) {
+        storey.children.push(...child.children);
+      }    }  }
+  viewer.dxf.initializeJSDXF(Drawing);
+
+  for (plan of allPlans) {
+    const currentPlan = viewer.plans.planLists[model.modelID][plan];
+    const button = document.createElement('button');
+    containerForPlans.appendChild(button);
+    button.textContent = 'Export ' + currentPlan.name;
+    button.onclick = () => {
+      const storey = storeys.find(storey => storey.expressID === currentPlan.expressID);
+      exportDXF(storey, currentPlan, model.modelID);
+    };
+  }}
+// Action buttons collection
+const allActionButtons = [];
+console.log(allActionButtons);
+
+// Back button
+const backButton = document.getElementById('back-button');
+backButton.onclick = () => {
+  window.location.href='./index.html';
+};
+
+// Selection button
+const selectButton = document.getElementById('select-button');
+allActionButtons.push(selectButton);
+
+let selectionActive = false;
+let propertiesMenu;
+selectButton.onclick = () => {
+  if(selectionActive) {
+    selectionActive = !selectionActive;
+    selectButton.classList.remove('active');
+    window.onmousemove = () => {
+      viewer.IFC.selector.unPrepickIfcItems();
+    };
+    viewer.IFC.selector.unHighlightIfcItems();
+    removeAllChildren(propsGUI);
+    propertiesMenu.classList.remove('visible');
+  } else {
+    selectionActive = !selectionActive;
+    selectButton.classList.add('active');
+    selectionActive = window.onmousemove = () => {
+      viewer.IFC.selector.prePickIfcItem();
+    };
+    propertiesMenu = document.getElementById('ifc-property-menu');
+    propertiesMenu.classList.add('visible');
+  }};
+
+// Dimensions button
+const measureButton = document.getElementById('measure-button');
+allActionButtons.push(measureButton);
+
+let measuresActive = false;
+measureButton.onclick = () => {
+  if(measuresActive) {
+    measuresActive = !measuresActive;
+    measureButton.classList.remove('active');
+    viewer.dimensions.deleteAll();
+    viewer.dimensions.previewActive = measuresActive;
+  } else {
+    measuresActive = !measuresActive;
+    measureButton.classList.add('active');
+    viewer.dimensions.active = measuresActive;
+    viewer.dimensions.previewActive = measuresActive;
+  }};
+
+// Floorplans button
+const floorplanButton = document.getElementById('floorplans-button');
+allActionButtons.push(floorplanButton);
+
+let floorplansActive = false;
+let floorplansButtonContainer;
+floorplanButton.onclick = () => {
+  if(floorplansActive) {
+    floorplansActive = !floorplansActive;
+    floorplanButton.classList.remove('active');
+    floorplansButtonContainer.classList.remove('visible');
+    viewer.plans.exitPlanView();
+    viewer.edges.toggle('example-edges', false);
+    toggleShadow(true);
+  } else {
+    floorplansActive = !floorplansActive;
+    floorplanButton.classList.add('active');
+    floorplansButtonContainer = document.getElementById('button-container');
+    floorplansButtonContainer.classList.add('visible');
+  }};
+
+// Cutting button
+const cutButton = document.getElementById('cut-button');
+allActionButtons.push(cutButton);
+
+let cuttingPlansActive = false;
+cutButton.onclick = () => {
+  if(cuttingPlansActive) {
+    cuttingPlansActive = !cuttingPlansActive;
+    cutButton.classList.remove('active');
+    viewer.clipper.deleteAllPlanes();
+  } else {
+    cuttingPlansActive = !cuttingPlansActive;
+    cutButton.classList.add('active');
+    viewer.clipper.active = cuttingPlansActive;
+  }};
+
+// Hide button
+const hideButton = document.getElementById('hide-button');
+const checkBoxes = document.getElementById('checkboxes');
+allActionButtons.push(hideButton);
+
+let hidingActive = false;
+hideButton.onclick = async () => {
+  if(hidingActive) {
+    hidingActive = !hidingActive;
+    hideButton.classList.remove('active');
+    checkBoxes.classList.remove('visible');
+    togglePickable(model, true);
+    await setupAllCategories();
+    const elementsWithIfcId = document.querySelectorAll(`[id^="IFC"]`);
+    for (let i = 0; i < elementsWithIfcId.length; i++) {
+      elementsWithIfcId[i].checked = true;
+    }    updatePostproduction();
+  } else {
+    hidingActive = !hidingActive;
+    hideButton.classList.add('active');
+    checkBoxes.classList.add('visible');
+  }};
+
+// Escape click for all buttons
+window.onkeydown = async (event) => {
+  if(event.code === 'Escape' && cuttingPlansActive) {
+    viewer.clipper.deleteAllPlanes();
+    cuttingPlansActive = !cuttingPlansActive;
+    cutButton.classList.remove('active');
+  } else if(event.code === 'Escape' && measuresActive) {
+    measuresActive = !measuresActive;
+    measureButton.classList.remove('active');
+    viewer.dimensions.previewActive = measuresActive;
+    viewer.dimensions.deleteAll();
+  } else if(event.code === 'Escape' && selectionActive) {
+    selectButton.classList.remove('active');
+    selectionActive = !selectionActive;
+    window.onmousemove = () => {
+      viewer.IFC.selector.unPrepickIfcItems();
+    };
+    viewer.IFC.selector.unHighlightIfcItems();
+    removeAllChildren(propsGUI);
+    propertiesMenu.classList.remove('visible');
+  } else if(event.code === 'Escape' && hidingActive) {
+    hidingActive = !hidingActive;
+    hideButton.classList.remove('active');
+    checkBoxes.classList.remove('visible');
+    togglePickable(model, true);
+    await setupAllCategories();
+    const elementsWithIfcId = document.querySelectorAll(`[id^="IFC"]`);
+    for (let i = 0; i < elementsWithIfcId.length; i++) {
+      elementsWithIfcId[i].checked = true;
+    }    updatePostproduction();
+  } else if(event.code === 'Escape' && floorplansActive) {
+    viewer.plans.exitPlanView();
+    
+    
+    floorplanButton.classList.remove('active');
+    floorplansButtonContainer.classList.remove('visible');
+
+    viewer.edges.toggle('example-edges', false);
+    toggleShadow(true);
+    floorplansActive = !floorplansActive;
+    
+  }  
+};
+
+// Double click for all buttons
+window.ondblclick = async () => {
+  if(cuttingPlansActive) {
+    viewer.clipper.createPlane();
+  } else if(measuresActive) {
+      viewer.dimensions.create();
+  } else if(selectionActive) {
+    const result = await viewer.IFC.selector.highlightIfcItem();
+    if(!result) return;
+    const { modelID, id } = result;
+    const props = await viewer.IFC.getProperties(modelID, id, true, false);
+    createPropertiesMenu(props);
+  // } else if(hidingActive) {
+  //   const result = viewer.context.castRayIfc();
+  //   const index = result.faceIndex;
+  //   const subset = result.object;
+  //   const id = viewer.IFC.loader.ifcManager.getExpressId(subset.geometry, index);
+  //   if(result === null) return;
+  //   viewer.IFC.loader.ifcManager.removeFromSubset(
+  //     subset.modelID,
+  //     [id],
+  //     subset.userData.category
+  //   );
+  //   updatePostproduction();
+  }
+};
+
+// Functions for selection
+const propsGUI = document.getElementById('ifc-property-menu-root');
+
+function createPropertiesMenu(properties) {
+  console.log(properties);
+
+  removeAllChildren(propsGUI);
+
+  delete properties.psets;
+  delete properties.mats;
+  delete properties.type;
+
+  for(let key in properties) {
+    createPropertyEntry(key, properties[key]);
+  }}
+function createPropertyEntry(key, value) {
+  const propContainer = document.createElement("div");
+  propContainer.classList.add("ifc-property-item");
+
+  if(value === null || value === undefined) value = "undefined";
+  else if(value.value) value = value.value;
+
+  const keyElement = document.createElement("div");
+  keyElement.textContent = key;
+  propContainer.appendChild(keyElement);
+
+  const valueElement = document.createElement("div");
+  valueElement.classList.add("ifc-property-value");
+  valueElement.textContent = value;
+  propContainer.appendChild(valueElement);
+
+  propsGUI.appendChild(propContainer);
+}
+function removeAllChildren(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }}
+// Functions for checkboxes
+const categories = {
+  IFCWALLSTANDARDCASE,
+  IFCSLAB,
+  IFCDOOR,
+  IFCWINDOW,
+  IFCFURNISHINGELEMENT,
+  IFCMEMBER,
+  IFCPLATE,
+  IFCCURTAINWALL
+};
+
+function getName(category) {
+  const names = Object.keys(categories);
+  return names.find(name => categories[name] === category);
+}
+async function getAll(category) {
+  return viewer.IFC.loader.ifcManager.getAllItemsOfType(model.modelID, category);
+}
+const subsets = {};
+
+async function setupAllCategories() {
+  const allCategories = Object.values(categories);
+  for(const category of allCategories) {
+    await setupCategory(category);
+  }}
+async function setupCategory(category) {
+  const subset = await newSubsetOfType(category);
+  subset.userData.category = category.toString();
+  subsets[category] = subset;
+  togglePickable(subset, true);
+  setupCheckbox(category);
+}
+function setupCheckbox(category) {
+  const name = getName(category);
+  const checkbox = document.getElementById(name);
+  checkbox.addEventListener('change', () => {
+    const subset = subsets[category];
+    if(checkbox.checked) {
+      scene.add(subset);
+      togglePickable(subset, true);
+    }
+    else {
+      subset.removeFromParent();
+      togglePickable(subset, false);
+    }    updatePostproduction();
+  });
+}
+function updatePostproduction() {
+  viewer.context.renderer.postProduction.update();
+}
+async function newSubsetOfType(category) {
+  const ids = await getAll(category);
+  return viewer.IFC.loader.ifcManager.createSubset({
+    modelID: model.modelID,
+    scene,
+    ids,
+    removePrevious: true,
+    customID: category.toString()
+  });
+}
+function togglePickable(mesh, isPickable) {
+  const pickableModels = viewer.context.items.pickableIfcModels;
+  if(isPickable) {
+    pickableModels.push(mesh);
+  } else {
+    const index = pickableModels.indexOf(mesh);
+    pickableModels.splice(index, 1);
+  }}
+// Functions for floorplans
+const dummySubsetMaterial = new MeshBasicMaterial({visible: false});
+async function exportDXF(storey, plan, modelID) {
+  if(!viewer.dxf.drawings[plan.name]) {
+    viewer.dxf.newDrawing(plan.name);
+  }  
+  const ids = storey.children.map(item => item.expressID);
+  if(!ids) return;
+
+  const subset = viewer.IFC.loader.ifcManager.createSubset({
+    modelID,
+    ids,
+    removePrevious: true,
+    customID: 'floor_plan_generation',
+    material: dummySubsetMaterial
+  });
+
+  const filteredPoints = [];
+  const edges = await viewer.edgesProjector.projectEdges(subset);
+  const positions = edges.geometry.attributes.position.array;
+
+  const tolerance = 0.001;
+  for(let i = 0; i < positions.length - 5; i += 6) {
+    const a = positions[i] - positions[i + 3];
+		const b = -positions[i + 2] + positions[i + 5];
+
+		const distance = Math.sqrt(a * a + b * b);
+
+		if (distance > tolerance) {
+			filteredPoints.push([positions[i], -positions[i + 2], positions[i + 3], -positions[i + 5]]);
+		}
+  }
+  viewer.dxf.drawEdges(plan.name, filteredPoints, 'Projection', Drawing.ACI.BLUE, 'CONTINOUS');
+  edges.geometry.dispose();
+
+  viewer.dxf.drawNamedLayer(plan.name, plan, 'thick', 'Section', Drawing.ACI.RED, 'CONTINOUS');
+  viewer.dxf.drawNamedLayer(plan.name, plan, 'thin', 'Section', Drawing.ACI.RED, 'CONTINOUS');
+
+  const result = viewer.dxf.exportDXF(plan.name);
+  const link = document.createElement('a');
+  link.download = 'floorplan.dxf';
+  link.href = URL.createObjectURL(result);
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+function toggleShadow(active) {
+  const shadows = Object.values(viewer.shadowDropper.shadows);
+  for(shadow of shadows) {
+    shadow.root.visible = active;
+  }}
